@@ -1,0 +1,39 @@
+﻿<div class="bg-dark text-light mb-2 rounded d-flex align-items-start justify-content-between">
+    <div class="m-3">
+        <h5 class="text-white mb-0">@post.Name</h5>
+        <div class="text-muted small mb-1">@post.date.ToShortDateString()</div>
+        <p>@post.Text</p>
+        <select class="btn btn-sm btn-outline-light" @bind="type">
+            <option>объявление</option>
+            <option>новость</option>
+            <option>статья</option>
+            <option>видео</option>
+        </select>
+    </div>
+    <div class="d-flex flex-column m-3">
+        <button class="btn btn-sm btn-outline-light mb-1">Смотреть</button>
+        <button class="btn btn-sm btn-outline-light mb-1">Изменить</button>
+        <button class="btn btn-sm btn-danger" @onclick="() => удалить.InvokeAsync(post)">Удалить</button>
+    </div>
+</div>
+
+@code {  
+    [Parameter]
+    public post post { get; set; }
+
+    [Parameter]
+    public EventCallback<post> удалить { get; set; }
+
+    [Parameter]
+    public EventCallback обновить { get; set; }
+
+    string type
+    {
+        get{ return post.type; }
+        set
+        {
+            post.type = value;
+            обновить.InvokeAsync("");
+        }
+    }
+}

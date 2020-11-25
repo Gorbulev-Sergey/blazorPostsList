@@ -1,0 +1,70 @@
+﻿@page "/posts"
+@inject ICRUD<post> PostsService
+
+<h3>Posts</h3>
+
+<SortedTabs filterChanged="filter => обновить2((Filter)filter)"></SortedTabs>
+
+@foreach (var post in filtredPosts)
+{
+    <Post post="post" удалить="удалить" обновить="обновить"></Post>
+}
+
+@code {
+    List<post> posts { get; set; } = new List<post>();
+    List<post> filtredPosts { get; set; } = new List<post>();
+
+    Filter Filter = new Filter();
+
+    protected override void OnInitialized()
+    {
+        posts = PostsService.get();
+        filtredPosts = posts.Where(p => p.type == "новость" || p.type == "объявление").ToList();
+    }
+
+    void удалить(post post)
+    {
+        filtredPosts.Remove(post);
+    }
+
+    void обновить()
+    {
+        обновить2(Filter);
+        //filtredPosts = posts.Where(p => p.type == Enum.GetName(typeof(filter2), Filter.filter2)).ToList();
+    }
+
+    void обновить2(Filter filter)
+    {
+        Filter = filter;
+        filtredPosts = posts;
+
+        //Первый фильтр
+        if (Filter.filter1.ToString()!="все")
+        {
+            switch (Filter.filter1.ToString())
+            {
+                case "опубликованы": filtredPosts = posts.Where(p => p.published == true).ToList(); break;
+                case "неопубликованы": filtredPosts = posts.Where(p => p.published == false).ToList(); break;
+            }
+
+        }
+
+        // Второй фильтр
+        if (Filter.filter2.ToString()!="все")
+        {
+            switch (Filter.filter2.ToString())
+            {
+                case "объявление": filtredPosts = filtredPosts.Where(p => p.type == type.объявление.ToString()).ToList(); break;
+                case "новость": filtredPosts = filtredPosts.Where(p => p.type == type.новость.ToString()).ToList(); break;
+                case "статья": filtredPosts = filtredPosts.Where(p => p.type == type.статья.ToString()).ToList(); break;
+                case "видео": filtredPosts = filtredPosts.Where(p => p.type == type.видео.ToString()).ToList(); break;
+            }
+        }
+
+        // Третий фильр
+        if (Filter.filter3.ToString()==filter3.старые.ToString())
+        {
+            filtredPosts = filtredPosts.OrderBy(p=>p.date).Reverse().ToList();
+        }
+    }
+}

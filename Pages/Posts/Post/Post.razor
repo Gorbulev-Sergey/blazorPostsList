@@ -4,10 +4,14 @@
         <div class="text-muted small mb-1">@post.date.ToShortDateString()</div>
         <p>@post.Text</p>
         <select class="btn btn-sm btn-outline-light" @bind="type">
-            <option>объявление</option>
-            <option>новость</option>
-            <option>статья</option>
-            <option>видео</option>
+            @foreach (var item in Enum.GetValues(typeof(type)))
+            {
+                <option>@item</option>
+            }
+        </select>
+        <select class="btn btn-sm btn-outline-light" @bind="published">
+            <option value="True">опубликован</option>
+            <option value="False">неопубликован</option>            
         </select>
     </div>
     <div class="d-flex flex-column m-3">
@@ -33,6 +37,15 @@
         set
         {
             post.type = value;
+            обновить.InvokeAsync("");
+        }
+    }
+
+    string published
+    {
+        get => post.published.ToString();
+        set{
+            post.published = Boolean.Parse(value);
             обновить.InvokeAsync("");
         }
     }

@@ -3,7 +3,7 @@
 
 <h3>Posts</h3>
 
-<SortedTabs filterChanged="filter => обновить2((Filter)filter)"></SortedTabs>
+<SortedTabs filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
 
 @foreach (var post in filtredPosts)
 {
@@ -29,11 +29,10 @@
 
     void обновить()
     {
-        обновить2(Filter);
-        //filtredPosts = posts.Where(p => p.type == Enum.GetName(typeof(filter2), Filter.filter2)).ToList();
+        фильтровать(Filter);
     }
 
-    void обновить2(Filter filter)
+    void фильтровать(Filter filter)
     {
         Filter = filter;
         filtredPosts = posts;

@@ -12,10 +12,10 @@ namespace blazorPostsList.Services
 
         public PostsService()
         {
-            posts.Add(new post { Name = "Выбор компьютера", Text = "Можно выбрать разные компьютеры", type = "новость", cover_image= "https://i.ucrazy.ru/files/pics/2017.04/photo14915494424.jpg" });
+            posts.Add(new post { Name = "Выбор компьютера", Text = "Можно выбрать разные компьютеры", type = "новость", cover_image= "https://i.ucrazy.ru/files/pics/2017.04/photo14915494424.jpg", cover_video= "https://www.youtube.com/embed/cXsT1OLgqB4" });
             posts.Add(new post { Name = "Зима", Text = "Хорошо, когда на улице снег", type = "объявление", cover_image= "https://www.zaggo.ru/sas/image/01_lake_joseph_boathouse_by_altius_architects_12.jpg" });
             posts.Add(new post { Name = "Любовь", Text = "Хорошо, когда тебя любят", type = "новость", cover_image= "https://drasler.ru/wp-content/uploads/2019/05/%D0%94%D0%BE%D0%BC-%D0%B2-%D0%BB%D0%B5%D1%81%D1%83-%D0%BD%D0%B0-%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%83-%D0%BE%D0%B7%D0%B5%D1%80%D0%B0-%D1%84%D0%BE%D1%82%D0%BE-3.jpg" });
-            posts.Add(new post { Name = "Научиться любви", Text = "Научись любить других", type="новость", cover_image= "https://evermotion.org/files/EVRprfolio/Untitled1.jpg" });
+            posts.Add(new post { Name = "Научиться любви", Text = "Научись любить других", type="новость", cover_image= "https://evermotion.org/files/EVRprfolio/Untitled1.jpg", cover_video= "https://www.youtube.com/embed/CmczRvtMPYQ" });
         }
 
         public void add(post item)

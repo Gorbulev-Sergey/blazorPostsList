@@ -16,6 +16,7 @@ namespace blazorPostsList.Models
         public string type { get; set; }
         public bool published { get; set; } = false;
         public string cover_image { get; set; }
+        public string cover_video { get; set; }
         public DateTime date { get; set; } = DateTime.Now;
     }
 
